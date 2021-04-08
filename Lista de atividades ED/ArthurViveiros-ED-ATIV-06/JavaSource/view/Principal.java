@@ -2,17 +2,15 @@ package view;
 
 import javax.swing.JOptionPane;
 
-import controller.ExercicioAluno_Ativ_05;
-import controller.ExercicioTemperatura_Ativ_05;
+import controller.ExercicioEncadeiaAluno_Ativ_06;
+import controller.ExercicioTemp_Ativ_06;
 import model.Aluno;
+import model.OrdemAluno;
 import model.Temperatura;
 
 public class Principal {
 
 	public static void main(String[] args) {
-
-		ExercicioTemperatura_Ativ_05 temperatura = new ExercicioTemperatura_Ativ_05();
-		ExercicioAluno_Ativ_05 aluno = new ExercicioAluno_Ativ_05();
 
 		int exerc = 0;
 		int choose = 0;
@@ -23,12 +21,18 @@ public class Principal {
 		String turma;
 		String semestre;
 
-		JOptionPane.showMessageDialog(null, "Arthur Viveiros - RA: 1110482012024\nLista 05 - Temperatura e Alunos");
+
+		ExercicioTemp_Ativ_06 temperatura = new ExercicioTemp_Ativ_06();
+		ExercicioEncadeiaAluno_Ativ_06 aluno = new ExercicioEncadeiaAluno_Ativ_06();
+		
+		JOptionPane.showMessageDialog(null, "Arthur Viveiros - RA: 1110482012024\nLista 06 - Temperatura e Aluno Recursivo");
 
 		exerc = Integer.parseInt(JOptionPane.showInputDialog("Qual exercício você quer ver??"
-				+ "\nDigite 2 para ver o exercício 2 - Temperaturas" + "\nDigite 3 para ver o exercício 3 - Alunos"));
-		if (exerc == 2) {
+				+ "\nDigite 1 para ver o exercício 1 - Temperatura" + "\nDigite 2 para ver o exercício 2 - Aluno"));
+
+		if (exerc == 1) {
 			do {
+				
 				choose = Integer.parseInt(JOptionPane.showInputDialog(
 						"----------------------------------------------------------------------"
 								+ "\nExercício 02 - Temperaturas\n"
@@ -55,12 +59,12 @@ public class Principal {
 					break;
 				case 3:
 					graus = Integer.parseInt(
-							JOptionPane.showInputDialog("Digite a temperatura para se colocar no início da fila: "));
+							JOptionPane.showInputDialog("Digite a temperatura para se colocar no final da fila: "));
 					temperatura.addTempFim(graus);
 					break;
 				case 4:
 					graus = Integer.parseInt(
-							JOptionPane.showInputDialog("Digite a temperatura para se colocar no início da fila: "));
+							JOptionPane.showInputDialog("Digite a temperatura: "));
 					posicao = Integer.parseInt(
 							JOptionPane.showInputDialog("Digite a posicao em que você quer adicionar a temperatura: "));
 					temperatura.addTempPos(graus, posicao);
@@ -77,7 +81,8 @@ public class Principal {
 					temperatura.delTempPos(posicao);
 					break;
 				case 8:
-					temperatura.verLista();
+					Temperatura listado = null;
+					temperatura.verLista(listado);
 					break;
 				}
 			} while (choose != 0);
@@ -96,8 +101,7 @@ public class Principal {
 
 				switch (choose) {
 				case 1:
-					RA = Integer
-							.parseInt(JOptionPane.showInputDialog("Digite o RA do aluno que você quer adicionar: "));
+					RA = Integer.parseInt(JOptionPane.showInputDialog("Digite o RA do aluno que você quer adicionar: "));
 					nome = JOptionPane.showInputDialog("Digite o nome do aluno que você quer adicionar: ");
 					turma = JOptionPane.showInputDialog("Digite a turma do aluno que você quer adicionar: ");
 					semestre = JOptionPane.showInputDialog("Digite o semestre do aluno que você quer adicionar: ");
@@ -132,10 +136,12 @@ public class Principal {
 					aluno.delAlunoMeio();
 					break;
 				case 7:
-					aluno.verLista();
+					OrdemAluno listado = null;
+					aluno.verLista(listado);
 					break;
 				}
 			} while (choose != 0);
 		}
+
 	}
 }
